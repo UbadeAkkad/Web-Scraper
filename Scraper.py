@@ -71,8 +71,9 @@ chrome_options.headless = True
 if LoadImages_Option == "Off":
     chrome_options.add_argument('--blink-settings=imagesEnabled=false') 
 
-chromedriver_autoinstaller.install(True, "/Chromedrive")
-service = Service(executable_path="Chromedrive/chromedriver")
+chromedriver_autoinstaller.install(True)
+chromedriver_majorversion = chromedriver_autoinstaller.get_chrome_version().split(".")[0]
+service = Service(executable_path=chromedriver_majorversion+"/chromedriver")
 driver = webdriver.Chrome(service=service, options=chrome_options)
 
 results = {}
